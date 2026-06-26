@@ -20,7 +20,7 @@ Aircraft engine degradation is gradual and multi-dimensional: wear and thermal s
 
 ## Dataset
 
-The experiments use NASA's **C-MAPSS (Commercial Modular Aero-Propulsion System Simulation)** dataset — a widely used benchmark for prognostics and health management research.
+The experiments use NASA's **C-MAPSS (Commercial Modular Aero-Propulsion System Simulation)** dataset, a widely used benchmark for prognostics and health management research.
 
 | Property | Value |
 |---|---|
@@ -57,10 +57,10 @@ Both scripts share a common preprocessing pipeline before diverging into their r
 
 ### Shared Preprocessing
 
-1. **Feature selection** — four health-indicator signals retained; constant `EPRA` column dropped.
-2. **Normalisation** — Min-Max scaling to [0, 1] per feature.
-3. **Per-engine chronological split** — the first 70% of each engine's life is used for anomaly modelling; the final 30% for evaluation.
-4. **Uniform feature length** — each engine's anomaly signal is interpolated to a fixed 50-point sequence so all 100 engines share the same input dimensionality for the downstream classifier.
+1. **Feature selection**: four health-indicator signals retained; constant `EPRA` column dropped.
+2. **Normalisation**: Min-Max scaling to [0, 1] per feature.
+3. **Per-engine chronological split**: the first 70% of each engine's life is used for anomaly modelling; the final 30% for evaluation.
+4. **Uniform feature length**: each engine's anomaly signal is interpolated to a fixed 50-point sequence so all 100 engines share the same input dimensionality for the downstream classifier.
 
 > A Savitzky-Golay smoothing utility (`smooth()`) is also provided and can optionally be applied before the modelling step.
 
@@ -86,7 +86,7 @@ Input (4) → Dense(10, ELU) → Dense(2, ELU)  ← bottleneck
 Mahalanobis Distance measures how many standard-deviation-equivalents a point lies from the training distribution, accounting for feature correlations. PCA (2 components) is applied first to reduce dimensionality and decorrelate features:
 
 - **Anomaly criterion**: MD > 3 × mean training distance → anomaly flag.
-- **Why MD?** Parameter-free, interpretable, and computationally lightweight. Provides a strong statistical baseline — especially effective when the healthy-state distribution is approximately Gaussian.
+- **Why MD?** Parameter-free, interpretable, and computationally lightweight. Provides a strong statistical baseline, especially effective when the healthy-state distribution is approximately Gaussian.
 
 ---
 
