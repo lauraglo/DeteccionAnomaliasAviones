@@ -109,4 +109,4 @@ At the **40% anomaly threshold** both models average ~57–63% accuracy, barely 
 
 - Explore additional techniques (e.g., LSTM networks, Isolation Forest, Local Outlier Factor) to improve results on the real-world dataset.
 - Incorporate domain-specific preprocessing for the Rolls data to reduce noise and handle missing values more robustly.
-- Extend the output from binary classification to **RUL estimation** — predicting the remaining useful life as a continuous value based on the density and timing of detected anomalous cycles.
+- Extend the output from binary classification to **RUL estimation**, predicting the remaining useful life as a continuous value based on the density and timing of detected anomalous cycles.
